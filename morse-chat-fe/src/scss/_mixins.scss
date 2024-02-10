@@ -1,0 +1,136 @@
+/* ==========================================================================
+  SCSS mixins
+========================================================================== */
+
+/**
+* Defines badge component's background, border, text color and dimensions
+*/
+@mixin badge-style($class, $color, $bg-color) {
+
+  &.badge-#{$class} {  
+    background: $bg-color;
+    color: $color;
+
+    @if $bg-color == transparent {
+      border-color: $color;
+    }
+    
+    @if (str-index($class, '-gradient')) {
+      border: none;
+
+      &.is-small {
+        padding: 4px 8px;
+      }
+    
+      &.is-medium {
+        padding: 8px 16px;
+      }
+    
+      &.is-large {
+        padding: 12px 16px;
+      }
+    }    
+  }
+}
+
+/**
+* Defines button component's background, border, text color and dimensions depending on its status (e.g active, hevered)
+*/
+@mixin btn-style($class, $status, $color: base, $bg-color: base, $size: all) {
+  $path: $class !default;
+  
+  @if $size != all {
+    $path: "#{$path}.is-#{$size}";
+  }
+  
+  @if $status == hover {
+    $path: ":not(.active):not(:active):hover#{$path}";
+  }
+
+  @else if $status == active {
+    $path: ".active#{$path}, &:active#{$path}";
+  }
+
+  @else if $status == disabled {
+    $path: ".disabled#{$path}";
+  }
+
+  &#{$path} {
+    
+    @if $bg-color != base {
+      background-color: $bg-color;
+      border-color: $bg-color;
+    }
+
+    @if $bg-color == transparent {
+      border-color: $color;
+    }    
+    
+    @if $color != base {
+      color: $color;
+
+      .fillable-icon {
+        fill: $color;    
+      }
+    }
+  }
+}
+
+/**
+* Defines text's weight, size, spacing
+*/
+@mixin text-style(
+  $weight,
+  $size,
+  $spacing: 0
+) {
+  font-weight: $weight;
+  font-size: pxToRem($size);
+  letter-spacing: pxToRem($spacing);
+  line-height: 1.5;
+}
+
+/**
+* Applies display:flex and centers depending on selected axis
+*/
+@mixin flex-center($axis: both) {
+  display: flex;
+
+  @if $axis == main {
+    justify-content: center;
+  } @else if $axis == cross {
+    align-items: center;
+  } @else if $axis == both {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/**
+* Shows ellipsis after text
+*/
+@mixin ellipsis() {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/**
+* Defines variable line clamp for text element
+*/
+@mixin line-clamp($lines: 1, $fontSize: 16 ) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  max-height: calc($lines * ($fontSize * 1.5)) + px;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+/**
+* Sets same height and width for element
+*/
+@mixin square($size) {  
+  width: $size !important;
+  height: $size !important;
+}
