@@ -10,8 +10,8 @@
 
             </div>
             <div class="mb-48">
-                <VInputLabel label="Email" class="mb-16">
-                    <VInput v-model="textTest"></VInput>
+                <VInputLabel label="Email" class="mb-16" forId="email">
+                    <VInput v-model="textTest" id="email"></VInput>
                 </VInputLabel>
 
                 <VInputLabel label="Password">

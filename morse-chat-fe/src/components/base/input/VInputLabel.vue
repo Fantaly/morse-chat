@@ -1,6 +1,11 @@
 <template>
     <div id="InputLabel">
-        <VLabel>{{ label }}</VLabel>
+        <VLabel :for="forId"
+        :class="
+            forId && 'pointer'
+        ">
+            {{ label }}
+        </VLabel>
         <slot></slot>
     </div>
 </template>
@@ -10,6 +15,7 @@ import VLabel from '../label/VLabel.vue';
 
 interface props{
     label: string
+    forId?: string
 }
 
 const props = withDefaults(defineProps<props>(), {
