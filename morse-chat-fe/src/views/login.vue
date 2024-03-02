@@ -2,21 +2,20 @@
     <div id="login">
         <div class="login">
             <div class="welcome mb-48">
-                <h1 class="semibold mb-12">
+                <h1 class="regular mb-12">
                     Welcome Back
                 </h1>
-
                 <p class="regular">Enter your email and password to access your account</p>
-
             </div>
             <div class="mb-48">
                 <VInputLabel label="Email" class="mb-16" forId="email">
-                    <VInput v-model="textTest" id="email"></VInput>
+                    <VInput v-model="textTest" id="email" placeholder="Enter your email"></VInput>
                 </VInputLabel>
 
-                <VInputLabel label="Password">
-                    <VInput></VInput>
+                <VInputLabel label="Password" forId="password">
+                    <VInput inputType="password" id="password" placeholder="Enter your password"></VInput>
                 </VInputLabel>
+
             </div>
             <VButton :size="'medium'" :color="'default'" :fullwidth="true">Sign in
                 <template v-slot:right>
@@ -32,9 +31,9 @@
 
 import VButton from '@/components/base/button/VButton.vue';
 import VIconSvg from '@/components/base/icon/VIconSvg.vue';
-import VLabel from '@/components/base/label/VLabel.vue';
 import VInput from '@/components/base/input/VInput.vue'
 import VInputLabel from '@/components/base/input/VInputLabel.vue';
+
 import { ref } from 'vue';
 
 const textTest = ref('');

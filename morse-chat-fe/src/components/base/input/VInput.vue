@@ -1,19 +1,23 @@
 <template>
-    <input type="text" class="input border-0 shadow" :class="fullwidth && 'is-full'" :placeholder="placeholder"
+    <input class="input shadow" :class="fullwidth && 'is-full'" :placeholder="placeholder" :type="inputType"
         v-model="modelValue">
 </template>
 
 <script setup lang="ts">
+import type { HTMLInputTypeAttribute } from 'react';
+
 const modelValue = defineModel()
 
 interface props {
     fullwidth: boolean,
-    placeholder: string
+    placeholder: string,
+    inputType?: HTMLInputTypeAttribute 
 }
 
 const props = withDefaults(defineProps<props>(), {
     fullwidth: false,
-    placeholder: 'Placeholder...'
+    placeholder: 'Placeholder...',
+    inputType: 'text'
 })
 
 </script>
@@ -29,10 +33,6 @@ const props = withDefaults(defineProps<props>(), {
     border-radius: 8px;
     font-size: 14px;
     line-height: 20px;
-}
-
-.border-0 {
-    // border: 1px solid var(--black-100);    
 }
 
 .shadow {

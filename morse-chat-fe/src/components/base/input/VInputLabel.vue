@@ -25,9 +25,11 @@ const props = withDefaults(defineProps<props>(), {
 </script>
 
 <style scoped>
+
 #InputLabel{
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
+
 </style>
