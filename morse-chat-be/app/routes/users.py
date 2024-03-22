@@ -62,14 +62,14 @@ def create_item_for_user(
     return itemCrud.create_user_item(db=db, item=item, user_id=user_id)
 
 
-@router.post("/token")
-async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()], db: Session = Depends(get_db)):
-    user_dict = userCrud.get_user_by_email(db, form_data.username)
+# @router.post("/token")
+# async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()], db: Session = Depends(get_db)):
+#     user_dict = userCrud.get_user_by_email(db, form_data.username)
 
-    if not user_dict:
-        raise HTTPException(status_code=400, detail="Incorrect username or password")
+#     if not user_dict:
+#         raise HTTPException(status_code=400, detail="Incorrect username or password")
 
-    if not verify_password(form_data.password, user_dict.hashed_password):
-        raise HTTPException(status_code=400, detail="Incorrect username or password")
+#     if not verify_password(form_data.password, user_dict.hashed_password):
+#         raise HTTPException(status_code=400, detail="Incorrect username or password")
 
-    return {"access_token": user_dict.email, "token_type": "bearer"}
+#     return {"access_token": user_dict.email, "token_type": "bearer"}
